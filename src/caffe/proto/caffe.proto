@@ -503,7 +503,7 @@ message DropoutParameter {
 
 message StaticDropoutParameter {
   optional float dropout_ratio = 1 [default = 0.5]; // dropout ratio
-  optional string drop_file = 2;
+  optional string dropout_file = 2;
 }
 
 // DummyDataLayer fills any number of arbitrarily shaped blobs with random

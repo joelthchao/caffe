@@ -16,7 +16,7 @@ void StaticDropoutLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top) {
   NeuronLayer<Dtype>::LayerSetUp(bottom, top);
   threshold_ = this->layer_param_.dropout_param().dropout_ratio();
-  string dropout_file = this->layer_param_.static_dropout_param.dropout_file();
+  string dropout_file = this->layer_param_.static_dropout_param().dropout_file();
   DCHECK(threshold_ > 0.);
   DCHECK(threshold_ < 1.);
   scale_ = 1. / (1. - threshold_);
