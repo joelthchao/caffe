@@ -330,6 +330,7 @@ message LayerParameter {
   optional ConvolutionParameter convolution_param = 106;
   optional DataParameter data_param = 107;
   optional DropoutParameter dropout_param = 108;
+  optional StaticDropoutParameter static_dropout_param = 137;
   optional DummyDataParameter dummy_data_param = 109;
   optional EltwiseParameter eltwise_param = 110;
   optional ExpParameter exp_param = 111;
@@ -498,6 +499,11 @@ message DataParameter {
 
 message DropoutParameter {
   optional float dropout_ratio = 1 [default = 0.5]; // dropout ratio
+}
+
+message StaticDropoutParameter {
+  optional float dropout_ratio = 1 [default = 0.5]; // dropout ratio
+  optional string drop_file = 2;
 }
 
 // DummyDataLayer fills any number of arbitrarily shaped blobs with random
