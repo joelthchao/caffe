@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
 
 #include "caffe/common.hpp"
 #include "caffe/layer.hpp"
@@ -15,8 +16,10 @@ template <typename Dtype>
 void StaticDropoutLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top) {
   NeuronLayer<Dtype>::LayerSetUp(bottom, top);
-  threshold_ = this->layer_param_.dropout_param().dropout_ratio();
+  //threshold_ = this->layer_param_.dropout_param().dropout_ratio();
   string dropout_file = this->layer_param_.static_dropout_param().dropout_file();
+  std::fstream fd(dropout_file.c_str(), std::ios_base::in);
+  fd >> threshold_;
   DCHECK(threshold_ > 0.);
   DCHECK(threshold_ < 1.);
   scale_ = 1. / (1. - threshold_);
